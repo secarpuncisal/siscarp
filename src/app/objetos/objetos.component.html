@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <form [formGroup]="formObjeto" (ngSubmit)="onSubmit()" >
+      <h2 class="text-center">Cadastro de objetos</h2>
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <input type="text" class="form-control" id="descricao" placeholder="Descrição" formControlName="descricao" >
+      </div>
+
+      <button type="submit" [disabled]="formObjeto.invalid" class="btn btn-default btn-block">Salvar</button>
+    </form>
+  </div>  
+</div>
