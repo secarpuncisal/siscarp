@@ -1,133 +1,98 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
       <div class="form-horizontal">
-        <input type="text" class="form-control" placeholder="Pesquisar item" >
+        <input type="text" class="form-control" placeholder="Pesquisar item" (keyup)="search(input.value)" #input >
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
-      <label class="checkbox-inline">
-        <input type="checkbox" id="check_medicamentos"> Medicamentos
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="check_correlatos"> Correlatos
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="check_alimentos"> Alimentos
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="check_limpeza"> Limpeza e descartável
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="check_expediente">Material de expediente
+      <label class="checkbox-inline" *ngFor="let objeto of objetos; let i = index">
+        <input type="checkbox" (change)="filterByObjeto(objeto, check.checked)" #check id="check_{{objeto.descricao}}" > {{objeto.descricao}}
       </label>
     </div>
   </div>
   <br>
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
-      <table class="table">
-        <thead>
-          <th>Código</th>
-          <th>Descrição</th>
-          <th>Forma farmacêutica</th>
-          <th>Dose</th>
-          <th>Apresentação</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-          </tr>
+    <div class="col-xs-12">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered ">
+          <thead>
+            <th class="text-center">Código</th>
+            <th class="text-center">Descrição</th>
+            <th class="text-center">Objeto</th>
+            <th class="text-center">Unidade</th>
+            <th class="text-center">Forma farmacêutica</th>
+            <th class="text-center">Dose</th>
+            <th class="text-center">Apresentação</th>
+          </thead>
           <tbody>
-          <tr>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-          </tr>
-          <tbody>
-          <tr>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-          </tr>
-          <tbody>
-          <tr>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste als dfjas kljdk fljaslkdj fkajsdjfkljaskdjfka skldfj k asdkflk a lsjdflk jsakdl</td>
-            <td>teste</td>
-            <td>teste</td>
-          </tr>
-          <tbody>
-          <tr>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-          </tr>
-          <tbody>
-          <tr>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-          </tr>
-          <tbody>
-          <tr>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-          </tr>
-          <tbody>
-          <tr>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-          </tr>
-        </tbody>
-      </table>
+            <tr *ngFor="let item of filteredItens" (click)="onSelectItem(item)" data-toggle="modal" data-target="#modalItem" >
+              <td>{{item.codigo}}</td>
+              <td>{{item.descricao}}</td>
+              <td>{{item.objeto_descricao}}</td>
+              <td>{{item.unidade}}</td>
+              <td>{{item.forma}}</td>
+              <td>{{item.dose}}</td>
+              <td>{{item.apresentacao}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
 
-<!--
-<div class="row container">
-  <div class="col-xs-8 col-xs-offset-2 form-inline">
-    <input type="text" class="form-control col-xs-6" placeholder="Pesquisar item" >
-    <button class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-  </div>
-  <div class="row form-inline">
 
-    <div class="form-group">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> Medicamentos
-        </label>
+<div class="modal fade" id="modalItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Editar item</h4>
+      </div>
+      <div class="modal-body" *ngIf="selectedItem">
+        <div class="form-group">
+          <label for="codigo">Objeto</label>
+          <input type="text" class="form-control" id="codigo" [(ngModel)]="selectedItem.objeto_descricao" disabled placeholder="Código" >
+        </div>
+        <div class="form-group">
+          <label for="">Alterar Objeto</label>
+          <select class="form-control" (change)="onSelectObjeto($event)">
+            <option value="" disabled selected >Alterar objeto</option>
+            <option *ngFor="let objeto of objetos" [value]="objeto.$key" >{{objeto.descricao}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="codigo">Código</label>
+          <input type="text" class="form-control" id="codigo" [(ngModel)]="selectedItem.codigo" placeholder="Código" >
+        </div>
+        <div class="form-group">
+          <label for="descricao">Descrição</label>
+          <textarea name="descricao" id="descricao" class="form-control" [(ngModel)]="selectedItem.descricao" ></textarea>
+        </div>
+        <div class="form-group" >
+            <label for="forma_farmaceutica">Forma farmacêutica</label>
+            <input type="text" class="form-control" id="forma_farmaceutica" placeholder="Forma farmacêutica" [(ngModel)]="selectedItem.forma" >
+        </div>
+        <div class="form-group" >
+            <label for="dose">Dose</label>
+            <input type="text" class="form-control" id="dose" placeholder="Dose" [(ngModel)]="selectedItem.dose" >
+        </div>
+        <div class="form-group">
+            <label for="apresentacao">Apresentação</label>
+            <input type="text" class="form-control" id="apresentacao" placeholder="Apresentação" [(ngModel)]="selectedItem.apresentacao" >
+        </div>
+        <div class="form-group" >
+            <label for="unidade">Unidade</label>
+            <input type="text" class="form-control" id="apresentacao" placeholder="Unidade" [(ngModel)]="selectedItem.unidade" >
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="excluirItem()" >Excluir item</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editItem()">Save changes</button>
       </div>
     </div>
-    <div class="form-group">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> Correlatos
-        </label>
-      </div>
-    </div>
-
   </div>
-</div> -->
+</div>

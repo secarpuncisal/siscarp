@@ -20,4 +20,16 @@ export class ItensService {
   getObjetos(): Observable<any>{
     return this.fireService.getObjetos()  
   }
+
+  getItens(): Observable<any>{
+    return this.fireService.getItens();
+  }
+
+  editItem(item):firebase.Promise<any> {
+    return this.fireService.editItem(item);
+  }
+
+  removeItem(item):firebase.Promise<any> {
+    return this.fireService.removeItem(item);
+  }
 }

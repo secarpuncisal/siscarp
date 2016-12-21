@@ -1,3 +1,4 @@
+import { CatalogoComponent } from './catalogo/catalogo.component';
 import { ObjetosComponent } from './objetos/objetos.component';
 import { ItensCadastroComponent } from './itens-cadastro/itens-cadastro.component';
 import { ItensComponent } from './itens/itens.component';
@@ -16,7 +17,8 @@ const appRoutes: Routes = [
     {path: 'processo_cadastro', component: ProcessoCadastroComponent},
     {path: 'itens', component: ItensComponent},
     {path: 'itens_cadastro', component: ItensCadastroComponent},
-    {path: 'objetos', component: ObjetosComponent}
+    {path: 'objetos', component: ObjetosComponent},
+    {path: 'catalogo', component: CatalogoComponent}
     
 ]
 

@@ -40,7 +40,6 @@ export class ItensCadastroComponent implements OnInit {
     this.objetos.map(objeto => { 
       if(objeto.$key === keySelecionada ){
         this.objetoSelected = objeto;
-        console.log('objeto selecionado', this.objetoSelected) 
       }
     })
   }

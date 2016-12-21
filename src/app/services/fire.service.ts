@@ -23,4 +23,25 @@ export class FireService {
   getObjetos(): Observable<any>{
     return this.af.database.list('objetos');
   }
+
+  getItens(): Observable<any>{
+    return this.af.database.list('itens');
+  }
+
+  editItem(item):firebase.Promise<any> {
+    console.log(item);
+    let key = item.$key;
+    return firebase.database().ref().child('/itens/'+key).update({
+      apresentacao: item.apresentacao,
+      codigo: item.codigo,
+      descricao: item.descricao,
+      dose: item.dose,
+      objeto: item.objeto,
+      unidade: item.unidade
+    })
+  }
+
+  removeItem(item):firebase.Promise<any> {
+    return firebase.database().ref('itens/'+item.$key).remove()
+  }
 }

@@ -1,3 +1,4 @@
+import { CatalogoService } from './services/catalogo.service';
 import { ItensService } from './services/itens.service';
 import { FireService } from './services/fire.service';
 import { routing } from './app.routing';
@@ -15,6 +16,7 @@ import { ProcessoCadastroComponent } from './processo-cadastro/processo-cadastro
 import { ItensComponent } from './itens/itens.component';
 import { ItensCadastroComponent } from './itens-cadastro/itens-cadastro.component';
 import { ObjetosComponent } from './objetos/objetos.component';
+import { CatalogoComponent } from './catalogo/catalogo.component';
 
 const config = {
     apiKey: "AIzaSyAx9-6mKVyEc7HqlpeczGm8mZWHJ2fONqs",
@@ -33,19 +35,20 @@ const config = {
     ProcessoCadastroComponent,
     ItensComponent,
     ItensCadastroComponent,
-    ObjetosComponent
+    ObjetosComponent,
+    CatalogoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
     routing,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(config)
   ],
   providers: [
     FireService,
-    ItensService
+    ItensService,
+    CatalogoService
   ],
   bootstrap: [AppComponent]
 })
