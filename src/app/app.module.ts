@@ -17,6 +17,8 @@ import { ItensComponent } from './itens/itens.component';
 import { ItensCadastroComponent } from './itens-cadastro/itens-cadastro.component';
 import { ObjetosComponent } from './objetos/objetos.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
+import { CatalogoDetailComponent } from './catalogo-detail/catalogo-detail.component';
+import { UnidadesComponent } from './unidades/unidades.component';
 
 const config = {
     apiKey: "AIzaSyAx9-6mKVyEc7HqlpeczGm8mZWHJ2fONqs",
@@ -36,7 +38,9 @@ const config = {
     ItensComponent,
     ItensCadastroComponent,
     ObjetosComponent,
-    CatalogoComponent
+    CatalogoComponent,
+    CatalogoDetailComponent,
+    UnidadesComponent
   ],
   imports: [
     BrowserModule,

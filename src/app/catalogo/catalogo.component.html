@@ -1,3 +1,71 @@
-<p>
-  catalogo works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <h2 class="text-center">Catálogo</h2>
+    <hr>
+      <div class="row">
+        <form [formGroup]="formCatalogo" (ngSubmit)="onSubmitCatalogo()" >
+          <div class="col-xs-6">
+            <div class="form-group col-xs-12">
+              <label for="descricao">Ano: </label>
+              <input type="text" class="form-control" id="descricao" placeholder="Ano" formControlName="ano" >
+            </div>
+            <div class="col-xs-12">
+              <button type="button" [disabled]="formCatalogo.invalid" class="btn btn-default btn-block">Salvar</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="col-xs-6">
+          <form [formGroup]="formUnidade" (ngSubmit)="onSubmitUnidade()" >
+            <div class="form-group col-xs-12">
+              <label for="descricao">Unidade: </label>
+              <input type="text" class="form-control" id="descricao" #lblUnidade placeholder="Unidade" formControlName="descricao" >
+            </div>
+            <div class="col-xs-12">
+              <button type="submit" class="btn btn-default btn-block" [disabled]="formUnidade.invalid">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-xs-6">
+    <div class="list-group">
+      <button *ngFor="let catalogo of catalogos" type="button" class="list-group-item" (click)="onSelectCatalogo(catalogo)" >Demanda {{catalogo.ano}} </button>
+    </div>
+  </div>
+
+  <div class="col-xs-6">
+    <div class="list-group">
+      <button *ngFor="let unidade of unidades" type="button" class="list-group-item" (click)="onSelectUnidade(unidade)" data-toggle="modal" data-target="#modalUnidade"  >{{unidade.descricao}} </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalUnidade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Editar Unidade</h4>
+      </div>
+      <div class="modal-body" *ngIf="selectedUnidade">
+        <div class="form-group">
+          <label for="descricao">Descrição</label>
+          <input type="text" class="form-control" id="codigo"  [(ngModel)]="selectedUnidade.descricao" placeholder="Descrição" >
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="excluirItem()" >Excluir item</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editItem()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

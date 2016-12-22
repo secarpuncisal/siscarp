@@ -44,4 +44,24 @@ export class FireService {
   removeItem(item):firebase.Promise<any> {
     return firebase.database().ref('itens/'+item.$key).remove()
   }
+
+  saveCatalogo(catalogo):firebase.Promise<any> {
+    return firebase.database().ref('catalogo/').push(catalogo);
+  }
+
+  getCatalogos():Observable<any> {
+    return this.af.database.list('catalogo');
+  }
+
+  getCatalogo(key):Observable<any> {
+    return this.af.database.object('catalogo/'+key);
+  }
+
+  saveUnidade(unidade):firebase.Promise<any> {
+     return firebase.database().ref('unidades/').push({descricao: unidade});
+  }
+
+  getUnidades():Observable<any> {
+    return this.af.database.list('unidades');
+  }
 }
