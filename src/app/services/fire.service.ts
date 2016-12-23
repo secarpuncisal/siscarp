@@ -64,4 +64,23 @@ export class FireService {
   getUnidades():Observable<any> {
     return this.af.database.list('unidades');
   }
+  
+  removeUnidade(unidade):firebase.Promise<any>{
+    return firebase.database().ref('unidades/'+unidade.$key).remove();
+  }
+
+  editUnidade(unidade):firebase.Promise<any>{
+    return firebase.database().ref('unidades/'+unidade.$key).update({
+      descricao: unidade.descricao
+    });
+  }
+
+  saveDemanda(catalogo_key, item, demanda ):firebase.Promise<any> {
+    let obj = { };
+    obj['descricao'] = item.descricao;
+    obj['objeto_key'] = item.objeto;
+    obj['objeto_descricao'] = item.objeto_descricao;
+    obj['demanda'] = demanda;
+    return firebase.database().ref('catalogo/'+catalogo_key+'/demandas/'+item.$key).update(obj)
+  }
 }

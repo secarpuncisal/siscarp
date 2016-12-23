@@ -15,7 +15,7 @@ export class CatalogoComponent implements OnInit {
   selectedCatalogo: any;
   ano_catalogo: string = "";
   unidades: any[];
-  selectedUnidade: any;
+  selectedUnidade: any = {};
 
   constructor(private formBuilder: FormBuilder, private catalogoService: CatalogoService, private router: Router) {
     this.formCatalogo = this.formBuilder.group({
@@ -45,7 +45,12 @@ export class CatalogoComponent implements OnInit {
   }
 
   onSelectUnidade(unidade){
-    this.selectedUnidade = unidade;
+    this.selectedUnidade['$key']      = unidade.$key;
+    this.selectedUnidade['descricao'] = unidade.descricao;
+  }
+
+  onNavigateDemanda(catalogo){
+    this.router.navigate(['demanda', catalogo.$key])
   }
 
   onSubmitCatalogo(){
@@ -64,6 +69,20 @@ export class CatalogoComponent implements OnInit {
       .then(() => {
         alert('Unidade cadastrada com sucesso.');
         this.formUnidade.reset()
+      })
+  }
+
+  excluirUnidade(){
+    this.catalogoService.removeUnidade(this.selectedUnidade)
+      .then(() => {
+        alert('Unidade excluída com sucesso.');
+      })
+  }
+
+  editarUnidade(){
+    this.catalogoService.editUnidade(this.selectedUnidade)
+      .then(() => {
+        alert('Unidade alterada com sucesso.');
       })
   }
 }

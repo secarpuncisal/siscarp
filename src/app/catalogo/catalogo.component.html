@@ -34,7 +34,12 @@
 <div class="row">
   <div class="col-xs-6">
     <div class="list-group">
-      <button *ngFor="let catalogo of catalogos" type="button" class="list-group-item" (click)="onSelectCatalogo(catalogo)" >Demanda {{catalogo.ano}} </button>
+      <a *ngFor="let catalogo of catalogos" type="button" class="list-group-item" >Demanda {{catalogo.ano}}
+        <span class="pull-right">
+          <button class="btn btn-xs btn-primary right"  (click)="onSelectCatalogo(catalogo)" >Visualizar Catálogo </button>
+          <button class="btn btn-xs btn-success right" (click)="onNavigateDemanda(catalogo)" >Cadastrar demanda</button>
+        </span>
+      </a>
     </div>
   </div>
 
@@ -59,8 +64,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="excluirItem()" >Excluir item</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editItem()">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="excluirUnidade()" >Excluir Unidade</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editarUnidade()">Save changes</button>
       </div>
     </div>
   </div>

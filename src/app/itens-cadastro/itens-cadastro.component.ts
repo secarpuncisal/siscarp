@@ -21,6 +21,7 @@ export class ItensCadastroComponent implements OnInit {
 
     this.formItem = this.formBuild.group({
       'objeto': ['', Validators.required],
+      'objeto_descricao': [''],
       'codigo': ['', Validators.required],
       'descricao': ['', Validators.required],
       'forma': ['' ],
@@ -37,9 +38,11 @@ export class ItensCadastroComponent implements OnInit {
 
   onSelectObjeto(event){
     let keySelecionada = event.srcElement.value;
+    
     this.objetos.map(objeto => { 
       if(objeto.$key === keySelecionada ){
         this.objetoSelected = objeto;
+        this.formItem.controls['objeto_descricao'].setValue(objeto.descricao);
       }
     })
   }

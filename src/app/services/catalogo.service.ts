@@ -28,4 +28,15 @@ export class CatalogoService {
     return this.fireService.getUnidades();
   }
 
+  removeUnidade(unidade):firebase.Promise<any>{
+    return this.fireService.removeUnidade(unidade);
+  }
+
+  editUnidade(unidade):firebase.Promise<any>{
+    return this.fireService.editUnidade(unidade);
+  }
+
+  saveDemanda(catalogo_key, item, demanda ):firebase.Promise<any> {
+    return this.fireService.saveDemanda(catalogo_key, item, demanda);
+  }
 }

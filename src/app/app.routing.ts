@@ -1,3 +1,4 @@
+import { DemandaComponent } from './demanda/demanda.component';
 import { CatalogoDetailComponent } from './catalogo-detail/catalogo-detail.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { ObjetosComponent } from './objetos/objetos.component';
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
     {path: 'itens_cadastro', component: ItensCadastroComponent},
     {path: 'objetos', component: ObjetosComponent},
     {path: 'catalogo', component: CatalogoComponent},
-    {path: 'catalogo-detail/:id', component: CatalogoDetailComponent}
+    {path: 'catalogo-detail/:id', component: CatalogoDetailComponent},
+    {path: 'demanda/:id', component: DemandaComponent}
 ]
 
 

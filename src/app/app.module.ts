@@ -19,6 +19,7 @@ import { ObjetosComponent } from './objetos/objetos.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { CatalogoDetailComponent } from './catalogo-detail/catalogo-detail.component';
 import { UnidadesComponent } from './unidades/unidades.component';
+import { DemandaComponent } from './demanda/demanda.component';
 
 const config = {
     apiKey: "AIzaSyAx9-6mKVyEc7HqlpeczGm8mZWHJ2fONqs",
@@ -40,7 +41,8 @@ const config = {
     ObjetosComponent,
     CatalogoComponent,
     CatalogoDetailComponent,
-    UnidadesComponent
+    UnidadesComponent,
+    DemandaComponent
   ],
   imports: [
     BrowserModule,
